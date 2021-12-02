@@ -1,0 +1,76 @@
+#include<bits/stdc++.h>
+using namespace std;
+#define fo(i,n) for(i=0;i<n;i++)
+#define ll long long
+#define deb(x) cout << #x << "=" << x << endl
+#define deb2(x, y) cout << #x << "=" << x << "," << #y << "=" << y << endl
+#define all(x) x.begin(), x.end()
+// #define lbr(v) for(int x:v)
+typedef pair<int, int>	pii;
+typedef vector<int>		vi;
+typedef vector<pii>		vpii;
+typedef vector<vi>		vvi;
+ll powermod(ll x,ll y,ll m){
+    if(y==0){
+        return 1;
+    }
+    ll r= powermod(x,y/2,m);
+    if(y&1){
+        return (r*r*x)%m;
+    }
+    return (r*r)%m;
+}
+void solve() {
+    //code starts here
+    int n;
+    cin>>n;
+    vi v(n);
+    int sumn=0,sump=0,in=0,sum =0;
+    for(int &x:v){cin>>x; sum+=x;}
+    if(sum==0){
+        cout<<"NO"<<endl;
+        return;
+    }
+    cout<<"YES"<<endl;
+    sort(all(v));
+    for(int i =0;i<n;i++){
+        if(v[i]<=0){
+            sumn+=v[i];
+        }
+        else{
+            in =i;
+            break;
+        }
+    }
+    for(int i=in;i<n;i++){
+        sump+=v[i];
+    }
+    if(abs(sumn)>sump){
+        for(int x:v){
+            cout<<x<<" ";
+        }
+        cout<<endl;
+        return;
+    }
+    else{
+        for(int i=in;i<n;i++){
+            cout<<v[i]<<" ";
+        }
+        for(int i=0;i<in;i++){
+            cout<<v[i]<<" ";
+        }
+
+        cout<<endl;
+    }
+}
+
+int main() {
+    ios_base::sync_with_stdio(0), cin.tie(0), cout.tie(0);
+
+    int t = 1;
+    cin >> t;
+    while(t--) {
+      solve();
+    }
+    return 0;
+}
